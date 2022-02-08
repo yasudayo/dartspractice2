@@ -772,6 +772,107 @@ function r1p1() {
         p1nokoriscore.push(p1nokoriscore[13] - p1score[14]);
         player1Score.innerText = p1nokoriscore[14];
         player1Average.innerText = `AVG:${(p1average[0]) / 15  + (p1average[1]) / 15 + (p1average[2]) / 15 + (p1average[3]) / 15 + (p1average[4]) / 15 + (p1average[5]) / 15 + (p1average[6]) / 15 + (p1average[7]) / 15 + (p1average[8]) / 15 + (p1average[9]) / 15 + (p1average[10]) / 15 + (p1average[11]) / 15 + (p1average[12]) / 15 + (p1average[13]) / 15 + (p1average[14] / 15)}`;
+        if (p1nokoriscore[14] > 0 && p2nokoriscore[14] > 0) {
+            if(p1nokoriscore[14] < p2nokoriscore[14]) {
+                alert("Game Shot Player1");
+                player1Score.innerText = Player1ScoreShoki;
+                p1Leg++;
+                player1Leg.innerText = "LEG:" + p1Leg;
+                p1average.length = 0;
+                player1Average.innerText = "AVG:"　+ 0;
+                p1nokoriscore.length = 0;
+                p1score.length = 0;
+                P1R1.value = '';
+                P1R2.value = '';
+                P1R3.value = '';
+                P1R4.value = '';
+                P1R5.value = '';
+                P1R6.value = '';
+                P1R7.value = '';
+                P1R8.value = '';
+                P1R9.value = '';
+                P1R10.value = '';
+                P1R11.value = '';
+                P1R12.value = '';
+                P1R13.value = '';
+                P1R14.value = '';
+                P1R15.value = '';
+
+                player2Score.innerText = Player2ScoreShoki;
+                player2Leg.innerText = "LEG:" + p2Leg;
+                p2average.length = 0;
+                player2Average.innerText = "AVG:" + 0;
+                p2nokoriscore.length = 0;
+                p2score.length = 0;
+                P2R1.value = '';
+                P2R2.value = '';
+                P2R3.value = '';
+                P2R4.value = '';
+                P2R5.value = '';
+                P2R6.value = '';
+                P2R7.value = '';
+                P2R8.value = '';
+                P2R9.value = '';
+                P2R10.value = '';
+                P2R11.value = '';
+                P2R12.value = '';
+                P2R13.value = '';
+                P2R14.value = '';
+                P2R15.value = '';
+            }
+        
+    }
+
+    if (p1nokoriscore[14] > 0 && p2nokoriscore[14] > 0) {
+        if(p1nokoriscore[14] > p2nokoriscore[14]) {
+            alert("Game Shot Player2");
+            player2Score.innerText = Player2ScoreShoki;
+            p2Leg++;
+            player2Leg.innerText = "LEG:" + p2Leg;
+            p2average.length = 0;
+            player2Average.innerText = "AVG:"　+ 0;
+            p2nokoriscore.length = 0;
+            p2score.length = 0;
+            P2R1.value = '';
+            P2R2.value = '';
+            P2R3.value = '';
+            P2R4.value = '';
+            P2R5.value = '';
+            P2R6.value = '';
+            P2R7.value = '';
+            P2R8.value = '';
+            P2R9.value = '';
+            P2R10.value = '';
+            P2R11.value = '';
+            P2R12.value = '';
+            P2R13.value = '';
+            P2R14.value = '';
+            P2R15.value = '';
+
+            player1Score.innerText = Player1ScoreShoki;
+            player1Leg.innerText = "LEG:" + p1Leg;
+            p1average.length = 0;
+            player1Average.innerText = "AVG:" + 0;
+            p1nokoriscore.length = 0;
+            p1score.length = 0;
+            P1R1.value = '';
+            P1R2.value = '';
+            P1R3.value = '';
+            P1R4.value = '';
+            P1R5.value = '';
+            P1R6.value = '';
+            P1R7.value = '';
+            P1R8.value = '';
+            P1R9.value = '';
+            P1R10.value = '';
+            P1R11.value = '';
+            P1R12.value = '';
+            P1R13.value = '';
+            P1R14.value = '';
+            P1R15.value = '';
+        }
+}   
+
         if (p1nokoriscore[14] === 0) {
             alert("Game Short Player1");
             p1Win = true;
