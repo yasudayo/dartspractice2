@@ -200,7 +200,15 @@
                 player1Average.innerText = `AVG:${(p1average[0]) / 2 + (p1average[1]) / 2}`;
                 console.log(p1score);
                 console.log(p1nokoriscore);
-                console.log(player1Score);
+                console.log(p2nokoriscore[1]);
+
+                if (p2nokoriscore[1] >= 2 && p2nokoriscore[1] <= 158 || p2nokoriscore[1] === 160 ||
+                    p2nokoriscore[1] === 161 || p2nokoriscore[1] === 164 || p2nokoriscore[1] === 167 ||
+                    p2nokoriscore[1] === 170) {
+                    const uttr = new SpeechSynthesisUtterance("You require" + p2nokoriscore[1])
+                    uttr.lang = "en-GB"
+                    speechSynthesis.speak(uttr)
+                }
             }
             if (event.keyCode == 13 && P1R3.value != '' && p1score.length == 2) {
                 console.log(player2Score.innerText)
@@ -273,11 +281,19 @@
                     P2R14.value = '';
                     P2R15.value = '';
 
-                } else if (p1nokoriscore[2] !== 0) {
+                } if (p1nokoriscore[2] !== 0 && P2R3.value == "") {
                     if (p2nokoriscore[1] >= 2 && p2nokoriscore[1] <= 158 || p2nokoriscore[1] === 160 ||
                         p2nokoriscore[1] === 161 || p2nokoriscore[1] === 164 || p2nokoriscore[1] === 167 ||
                         p2nokoriscore[1] === 170) {
                         const uttr = new SpeechSynthesisUtterance("You require" + p2nokoriscore[1])
+                        uttr.lang = "en-GB"
+                        speechSynthesis.speak(uttr)
+                    }
+                } else if (p1nokoriscore[2] !== 0 && P2R3.value != "") {
+                    if (p2nokoriscore[2] >= 2 && p2nokoriscore[2] <= 158 || p2nokoriscore[2] === 160 ||
+                        p2nokoriscore[2] === 161 || p2nokoriscore[2] === 164 || p2nokoriscore[2] === 167 ||
+                        p2nokoriscore[2] === 170) {
+                        const uttr = new SpeechSynthesisUtterance("You require" + p2nokoriscore[2])
                         uttr.lang = "en-GB"
                         speechSynthesis.speak(uttr)
                     }
@@ -351,7 +367,7 @@
                     P2R13.value = '';
                     P2R14.value = '';
                     P2R15.value = '';
-                } else if (p1nokoriscore[3] !== 0) {
+                } else if (p1nokoriscore[3] !== 0 && P2R4.value == "") {
                     if (p2nokoriscore[2] >= 2 && p2nokoriscore[2] <= 158 || p2nokoriscore[2] === 160 ||
                         p2nokoriscore[2] === 161 || p2nokoriscore[2] === 164 || p2nokoriscore[2] === 167 ||
                         p2nokoriscore[2] === 170) {
@@ -359,6 +375,14 @@
                         uttr.lang = "en-GB"
                         speechSynthesis.speak(uttr)
                     }
+                }else if (p1nokoriscore[3] !== 0 && P2R4.value != "") {
+                    if (p2nokoriscore[3] >= 2 && p2nokoriscore[3] <= 158 || p2nokoriscore[3] === 160 ||
+                        p2nokoriscore[3] === 161 || p2nokoriscore[3] === 164 || p2nokoriscore[3] === 167 ||
+                        p2nokoriscore[3] === 170) {
+                        const uttr = new SpeechSynthesisUtterance("You require" + p2nokoriscore[3])
+                        uttr.lang = "en-GB"
+                        speechSynthesis.speak(uttr)
+                        }
                 }
             }
             if (event.keyCode == 13 && P1R5.value != '' && p1score.length == 4) {
@@ -427,11 +451,19 @@
                     P2R13.value = '';
                     P2R14.value = '';
                     P2R15.value = '';
-                } else if (p1nokoriscore[4] !== 0) {
+                } else if (p1nokoriscore[4] !== 0 && P2R5.value == "") {
                     if (p2nokoriscore[3] >= 2 && p2nokoriscore[3] <= 158 || p2nokoriscore[3] === 160 ||
                         p2nokoriscore[3] === 161 || p2nokoriscore[3] === 164 || p2nokoriscore[3] === 167 ||
                         p2nokoriscore[3] === 170) {
                         const uttr = new SpeechSynthesisUtterance("You require" + p2nokoriscore[3])
+                        uttr.lang = "en-GB"
+                        speechSynthesis.speak(uttr)
+                    }
+                } else if (p1nokoriscore[4] !== 0 && P2R5.value != "") {
+                    if (p2nokoriscore[4] >= 2 && p2nokoriscore[4] <= 158 || p2nokoriscore[4] === 160 ||
+                        p2nokoriscore[4] === 161 || p2nokoriscore[4] === 164 || p2nokoriscore[4] === 167 ||
+                        p2nokoriscore[4] === 170) {
+                        const uttr = new SpeechSynthesisUtterance("You require" + p2nokoriscore[4])
                         uttr.lang = "en-GB"
                         speechSynthesis.speak(uttr)
                     }
@@ -503,11 +535,19 @@
                     P2R13.value = '';
                     P2R14.value = '';
                     P2R15.value = '';
-                } else if (p1nokoriscore[5] !== 0) {
+                } else if (p1nokoriscore[5] !== 0 && P2R6.value == "") {
                     if (p2nokoriscore[4] >= 2 && p2nokoriscore[4] <= 158 || p2nokoriscore[4] === 160 ||
                         p2nokoriscore[4] === 161 || p2nokoriscore[4] === 164 || p2nokoriscore[4] === 167 ||
                         p2nokoriscore[4] === 170) {
                         const uttr = new SpeechSynthesisUtterance("You require" + p2nokoriscore[4])
+                        uttr.lang = "en-GB"
+                        speechSynthesis.speak(uttr)
+                    }
+                } else if (p1nokoriscore[5] !== 0 && P2R6.value != "") {
+                    if (p2nokoriscore[5] >= 2 && p2nokoriscore[5] <= 158 || p2nokoriscore[5] === 160 ||
+                        p2nokoriscore[5] === 161 || p2nokoriscore[5] === 164 || p2nokoriscore[5] === 167 ||
+                        p2nokoriscore[5] === 170) {
+                        const uttr = new SpeechSynthesisUtterance("You require" + p2nokoriscore[5])
                         uttr.lang = "en-GB"
                         speechSynthesis.speak(uttr)
                     }
@@ -579,11 +619,19 @@
                     P2R13.value = '';
                     P2R14.value = '';
                     P2R15.value = '';
-                } else if (p1nokoriscore[6] !== 0) {
+                } else if (p1nokoriscore[6] !== 0 && P2R7.value == "") {
                     if (p2nokoriscore[5] >= 2 && p2nokoriscore[5] <= 158 || p2nokoriscore[5] === 160 ||
                         p2nokoriscore[5] === 161 || p2nokoriscore[5] === 164 || p2nokoriscore[5] === 167 ||
                         p2nokoriscore[5] === 170) {
                         const uttr = new SpeechSynthesisUtterance("You require" + p2nokoriscore[5])
+                        uttr.lang = "en-GB"
+                        speechSynthesis.speak(uttr)
+                    }
+                } else if (p1nokoriscore[6] !== 0 && P2R7.value != "") {
+                    if (p2nokoriscore[6] >= 2 && p2nokoriscore[6] <= 158 || p2nokoriscore[6] === 160 ||
+                        p2nokoriscore[6] === 161 || p2nokoriscore[6] === 164 || p2nokoriscore[6] === 167 ||
+                        p2nokoriscore[6] === 170) {
+                        const uttr = new SpeechSynthesisUtterance("You require" + p2nokoriscore[6])
                         uttr.lang = "en-GB"
                         speechSynthesis.speak(uttr)
                     }
@@ -655,11 +703,19 @@
                     P2R13.value = '';
                     P2R14.value = '';
                     P2R15.value = '';
-                } else if (p1nokoriscore[7] !== 0) {
+                } else if (p1nokoriscore[7] !== 0  && P2R8.value == "") {
                     if (p2nokoriscore[6] >= 2 && p2nokoriscore[6] <= 158 || p2nokoriscore[6] === 160 ||
                         p2nokoriscore[6] === 161 || p2nokoriscore[6] === 164 || p2nokoriscore[6] === 167 ||
                         p2nokoriscore[6] === 170) {
                         const uttr = new SpeechSynthesisUtterance("You require" + p2nokoriscore[6])
+                        uttr.lang = "en-GB"
+                        speechSynthesis.speak(uttr)
+                    }
+                } else if (p1nokoriscore[7] !== 0 && P2R8.value != "") {
+                    if (p2nokoriscore[7] >= 2 && p2nokoriscore[7] <= 158 || p2nokoriscore[7] === 160 ||
+                        p2nokoriscore[7] === 161 || p2nokoriscore[7] === 164 || p2nokoriscore[7] === 167 ||
+                        p2nokoriscore[7] === 170) {
+                        const uttr = new SpeechSynthesisUtterance("You require" + p2nokoriscore[7])
                         uttr.lang = "en-GB"
                         speechSynthesis.speak(uttr)
                     }
@@ -731,11 +787,19 @@
                     P2R13.value = '';
                     P2R14.value = '';
                     P2R15.value = '';
-                } else if (p1nokoriscore[8] !== 0) {
+                } else if (p1nokoriscore[8] !== 0 && P2R9.value == "") {
                     if (p2nokoriscore[7] >= 2 && p2nokoriscore[7] <= 158 || p2nokoriscore[7] === 160 ||
                         p2nokoriscore[7] === 161 || p2nokoriscore[7] === 164 || p2nokoriscore[7] === 167 ||
                         p2nokoriscore[7] === 170) {
                         const uttr = new SpeechSynthesisUtterance("You require" + p2nokoriscore[7])
+                        uttr.lang = "en-GB"
+                        speechSynthesis.speak(uttr)
+                    }
+                } else if (p1nokoriscore[8] !== 0 && P2R9.value != "") {
+                    if (p2nokoriscore[8] >= 2 && p2nokoriscore[8] <= 158 || p2nokoriscore[8] === 160 ||
+                        p2nokoriscore[8] === 161 || p2nokoriscore[8] === 164 || p2nokoriscore[8] === 167 ||
+                        p2nokoriscore[8] === 170) {
+                        const uttr = new SpeechSynthesisUtterance("You require" + p2nokoriscore[8])
                         uttr.lang = "en-GB"
                         speechSynthesis.speak(uttr)
                     }
@@ -807,11 +871,19 @@
                     P2R13.value = '';
                     P2R14.value = '';
                     P2R15.value = '';
-                } else if (p1nokoriscore[9] !== 0) {
+                } else if (p1nokoriscore[9] !== 0 && P2R10.value == "") {
                     if (p2nokoriscore[8] >= 2 && p2nokoriscore[8] <= 158 || p2nokoriscore[8] === 160 ||
                         p2nokoriscore[8] === 161 || p2nokoriscore[8] === 164 || p2nokoriscore[8] === 167 ||
                         p2nokoriscore[8] === 170) {
                         const uttr = new SpeechSynthesisUtterance("You require" + p2nokoriscore[8])
+                        uttr.lang = "en-GB"
+                        speechSynthesis.speak(uttr)
+                    }
+                } else if (p1nokoriscore[9] !== 0 && P2R10.value == "") {
+                    if (p2nokoriscore[9] >= 2 && p2nokoriscore[8] <= 158 || p2nokoriscore[9] === 160 ||
+                        p2nokoriscore[9] === 161 || p2nokoriscore[8] === 164 || p2nokoriscore[9] === 167 ||
+                        p2nokoriscore[9] === 170) {
+                        const uttr = new SpeechSynthesisUtterance("You require" + p2nokoriscore[9])
                         uttr.lang = "en-GB"
                         speechSynthesis.speak(uttr)
                     }
@@ -883,11 +955,19 @@
                     P2R13.value = '';
                     P2R14.value = '';
                     P2R15.value = '';
-                } else if (p1nokoriscore[10] !== 0) {
+                } else if (p1nokoriscore[10] !== 0 && P2R11.value == "") {
                     if (p2nokoriscore[9] >= 2 && p2nokoriscore[9] <= 158 || p2nokoriscore[9] === 160 ||
                         p2nokoriscore[9] === 161 || p2nokoriscore[9] === 164 || p2nokoriscore[9] === 167 ||
                         p2nokoriscore[9] === 170) {
                         const uttr = new SpeechSynthesisUtterance("You require" + p2nokoriscore[9])
+                        uttr.lang = "en-GB"
+                        speechSynthesis.speak(uttr)
+                    }
+                } else if (p1nokoriscore[10] !== 0 && P2R11.value != "") {
+                    if (p2nokoriscore[10] >= 2 && p2nokoriscore[10] <= 158 || p2nokoriscore[10] === 160 ||
+                        p2nokoriscore[10] === 161 || p2nokoriscore[10] === 164 || p2nokoriscore[10] === 167 ||
+                        p2nokoriscore[10] === 170) {
+                        const uttr = new SpeechSynthesisUtterance("You require" + p2nokoriscore[10])
                         uttr.lang = "en-GB"
                         speechSynthesis.speak(uttr)
                     }
@@ -959,11 +1039,19 @@
                     P2R13.value = '';
                     P2R14.value = '';
                     P2R15.value = '';
-                } else if (p1nokoriscore[11] !== 0) {
+                } else if (p1nokoriscore[11] !== 0 && P2R12.value == "") {
                     if (p2nokoriscore[10] >= 2 && p2nokoriscore[10] <= 158 || p2nokoriscore[10] === 160 ||
                         p2nokoriscore[10] === 161 || p2nokoriscore[10] === 164 || p2nokoriscore[10] === 167 ||
                         p2nokoriscore[10] === 170) {
                         const uttr = new SpeechSynthesisUtterance("You require" + p2nokoriscore[10])
+                        uttr.lang = "en-GB"
+                        speechSynthesis.speak(uttr)
+                    }
+                } else if (p1nokoriscore[11] !== 0 && P2R12.value != "") {
+                    if (p2nokoriscore[11] >= 2 && p2nokoriscore[11] <= 158 || p2nokoriscore[11] === 160 ||
+                        p2nokoriscore[11] === 161 || p2nokoriscore[11] === 164 || p2nokoriscore[11] === 167 ||
+                        p2nokoriscore[11] === 170) {
+                        const uttr = new SpeechSynthesisUtterance("You require" + p2nokoriscore[11])
                         uttr.lang = "en-GB"
                         speechSynthesis.speak(uttr)
                     }
@@ -1035,11 +1123,19 @@
                     P2R13.value = '';
                     P2R14.value = '';
                     P2R15.value = '';
-                } else if (p1nokoriscore[12] !== 0) {
+                } else if (p1nokoriscore[12] !== 0 && P2R13.value == "") {
                     if (p2nokoriscore[11] >= 2 && p2nokoriscore[11] <= 158 || p2nokoriscore[11] === 160 ||
                         p2nokoriscore[11] === 161 || p2nokoriscore[11] === 164 || p2nokoriscore[11] === 167 ||
                         p2nokoriscore[11] === 170) {
                         const uttr = new SpeechSynthesisUtterance("You require" + p2nokoriscore[11])
+                        uttr.lang = "en-GB"
+                        speechSynthesis.speak(uttr)
+                    }
+                } else if (p1nokoriscore[12] !== 0 && P2R13.value != "") {
+                    if (p2nokoriscore[12] >= 2 && p2nokoriscore[12] <= 158 || p2nokoriscore[12] === 160 ||
+                        p2nokoriscore[12] === 161 || p2nokoriscore[12] === 164 || p2nokoriscore[12] === 167 ||
+                        p2nokoriscore[12] === 170) {
+                        const uttr = new SpeechSynthesisUtterance("You require" + p2nokoriscore[12])
                         uttr.lang = "en-GB"
                         speechSynthesis.speak(uttr)
                     }
@@ -1111,11 +1207,19 @@
                     P2R13.value = '';
                     P2R14.value = '';
                     P2R15.value = '';
-                } else if (p1nokoriscore[13] !== 0) {
+                } else if (p1nokoriscore[13] !== 0 && P2R14.value == "") {
                     if (p2nokoriscore[12] >= 2 && p2nokoriscore[12] <= 158 || p2nokoriscore[12] === 160 ||
                         p2nokoriscore[12] === 161 || p2nokoriscore[12] === 164 || p2nokoriscore[12] === 167 ||
                         p2nokoriscore[12] === 170) {
                         const uttr = new SpeechSynthesisUtterance("You require" + p2nokoriscore[12])
+                        uttr.lang = "en-GB"
+                        speechSynthesis.speak(uttr)
+                    }
+                } else if (p1nokoriscore[13] !== 0 && P2R14.value != "") {
+                    if (p2nokoriscore[13] >= 2 && p2nokoriscore[13] <= 158 || p2nokoriscore[13] === 160 ||
+                        p2nokoriscore[13] === 161 || p2nokoriscore[13] === 164 || p2nokoriscore[13] === 167 ||
+                        p2nokoriscore[13] === 170) {
+                        const uttr = new SpeechSynthesisUtterance("You require" + p2nokoriscore[13])
                         uttr.lang = "en-GB"
                         speechSynthesis.speak(uttr)
                     }
@@ -1187,11 +1291,19 @@
                     P2R13.value = '';
                     P2R14.value = '';
                     P2R15.value = '';
-                } else if (p1nokoriscore[14] !== 0) {
+                } else if (p1nokoriscore[14] !== 0 && P2R15.value == "") {
                     if (p2nokoriscore[13] >= 2 && p2nokoriscore[13] <= 158 || p2nokoriscore[13] === 160 ||
                         p2nokoriscore[13] === 161 || p2nokoriscore[13] === 164 || p2nokoriscore[13] === 167 ||
                         p2nokoriscore[13] === 170) {
                         const uttr = new SpeechSynthesisUtterance("You require" + p2nokoriscore[13])
+                        uttr.lang = "en-GB"
+                        speechSynthesis.speak(uttr)
+                    }
+                } else if (p1nokoriscore[14] !== 0 && P2R15.value != "") {
+                    if (p2nokoriscore[14] >= 2 && p2nokoriscore[14] <= 158 || p2nokoriscore[14] === 160 ||
+                        p2nokoriscore[14] === 161 || p2nokoriscore[14] === 164 || p2nokoriscore[14] === 167 ||
+                        p2nokoriscore[14] === 170) {
+                        const uttr = new SpeechSynthesisUtterance("You require" + p2nokoriscore[14])
                         uttr.lang = "en-GB"
                         speechSynthesis.speak(uttr)
                     }
@@ -1426,7 +1538,15 @@
                     P1R13.value = '';
                     P1R14.value = '';
                     P1R15.value = '';
-                } else if (p2nokoriscore[2] !== 0) {
+                } else if (p2nokoriscore[2] !== 0 && P1R3.value == "") {
+                    if (p1nokoriscore[1] >= 2 && p1nokoriscore[1] <= 158 || p1nokoriscore[1] === 160 ||
+                        p1nokoriscore[1] === 161 || p1nokoriscore[1] === 164 || p1nokoriscore[1] === 167 ||
+                        p1nokoriscore[1] === 170) {
+                        const uttr = new SpeechSynthesisUtterance("You require" + p1nokoriscore[1])
+                        uttr.lang = "en-GB"
+                        speechSynthesis.speak(uttr)
+                    }
+                } else if (p2nokoriscore[2] !== 0 && P1R3.value != "") {
                     if (p1nokoriscore[2] >= 2 && p1nokoriscore[2] <= 158 || p1nokoriscore[2] === 160 ||
                         p1nokoriscore[2] === 161 || p1nokoriscore[2] === 164 || p1nokoriscore[2] === 167 ||
                         p1nokoriscore[2] === 170) {
@@ -1504,11 +1624,19 @@
                     P1R13.value = '';
                     P1R14.value = '';
                     P1R15.value = '';
-                } else if (p2nokoriscore[3] !== 0) {
+                } else if (p2nokoriscore[3] !== 0 && P1R4.value != "") {
                     if (p1nokoriscore[3] >= 2 && p1nokoriscore[3] <= 158 || p1nokoriscore[3] === 160 ||
                         p1nokoriscore[3] === 161 || p1nokoriscore[3] === 164 || p1nokoriscore[3] === 167 ||
                         p1nokoriscore[3] === 170) {
                         const uttr = new SpeechSynthesisUtterance("You require" + p1nokoriscore[3])
+                        uttr.lang = "en-GB"
+                        speechSynthesis.speak(uttr)
+                    }
+                } else if (p2nokoriscore[3] !== 0 && P1R4.value == "") {
+                    if (p1nokoriscore[2] >= 2 && p1nokoriscore[2] <= 158 || p1nokoriscore[2] === 160 ||
+                        p1nokoriscore[2] === 161 || p1nokoriscore[2] === 164 || p1nokoriscore[2] === 167 ||
+                        p1nokoriscore[2] === 170) {
+                        const uttr = new SpeechSynthesisUtterance("You require" + p1nokoriscore[2])
                         uttr.lang = "en-GB"
                         speechSynthesis.speak(uttr)
                     }
@@ -1582,11 +1710,19 @@
                     P1R13.value = '';
                     P1R14.value = '';
                     P1R15.value = '';
-                } else if (p2nokoriscore[4] !== 0) {
+                } else if (p2nokoriscore[4] !== 0 && P1R5.value != "") {
                     if (p1nokoriscore[4] >= 2 && p1nokoriscore[4] <= 158 || p1nokoriscore[4] === 160 ||
                         p1nokoriscore[4] === 161 || p1nokoriscore[4] === 164 || p1nokoriscore[4] === 167 ||
                         p1nokoriscore[4] === 170) {
                         const uttr = new SpeechSynthesisUtterance("You require" + p1nokoriscore[4])
+                        uttr.lang = "en-GB"
+                        speechSynthesis.speak(uttr)
+                    }
+                } else if (p2nokoriscore[4] !== 0 && P1R5.value == "") {
+                    if (p1nokoriscore[3] >= 2 && p1nokoriscore[3] <= 158 || p1nokoriscore[3] === 160 ||
+                        p1nokoriscore[3] === 161 || p1nokoriscore[3] === 164 || p1nokoriscore[3] === 167 ||
+                        p1nokoriscore[3] === 170) {
+                        const uttr = new SpeechSynthesisUtterance("You require" + p1nokoriscore[3])
                         uttr.lang = "en-GB"
                         speechSynthesis.speak(uttr)
                     }
@@ -1661,11 +1797,19 @@
                     P1R13.value = '';
                     P1R14.value = '';
                     P1R15.value = '';
-                } else if (p2nokoriscore[5] !== 0) {
+                } else if (p2nokoriscore[5] !== 0 && P1R6.value !== "") {
                     if (p1nokoriscore[5] >= 2 && p1nokoriscore[5] <= 158 || p1nokoriscore[5] === 160 ||
                         p1nokoriscore[5] === 161 || p1nokoriscore[5] === 164 || p1nokoriscore[5] === 167 ||
                         p1nokoriscore[5] === 170) {
                         const uttr = new SpeechSynthesisUtterance("You require" + p1nokoriscore[5])
+                        uttr.lang = "en-GB"
+                        speechSynthesis.speak(uttr)
+                    }
+                } else if (p2nokoriscore[5] !== 0 && P1R6.value == "") {
+                    if (p1nokoriscore[4] >= 2 && p1nokoriscore[4] <= 158 || p1nokoriscore[4] === 160 ||
+                        p1nokoriscore[4] === 161 || p1nokoriscore[4] === 164 || p1nokoriscore[4] === 167 ||
+                        p1nokoriscore[4] === 170) {
+                        const uttr = new SpeechSynthesisUtterance("You require" + p1nokoriscore[4])
                         uttr.lang = "en-GB"
                         speechSynthesis.speak(uttr)
                     }
@@ -1739,11 +1883,19 @@
                     P1R13.value = '';
                     P1R14.value = '';
                     P1R15.value = '';
-                } else if (p2nokoriscore[6] !== 0) {
+                } else if (p2nokoriscore[6] !== 0 && P1R7.value !== "") {
                     if (p1nokoriscore[6] >= 2 && p1nokoriscore[6] <= 158 || p1nokoriscore[6] === 160 ||
                         p1nokoriscore[6] === 161 || p1nokoriscore[6] === 164 || p1nokoriscore[6] === 167 ||
                         p1nokoriscore[6] === 170) {
                         const uttr = new SpeechSynthesisUtterance("You require" + p1nokoriscore[6])
+                        uttr.lang = "en-GB"
+                        speechSynthesis.speak(uttr)
+                    }
+                } else if (p2nokoriscore[6] !== 0 && P1R7.value == "") {
+                    if (p1nokoriscore[5] >= 2 && p1nokoriscore[5] <= 158 || p1nokoriscore[5] === 160 ||
+                        p1nokoriscore[5] === 161 || p1nokoriscore[6] === 164 || p1nokoriscore[5] === 167 ||
+                        p1nokoriscore[5] === 170) {
+                        const uttr = new SpeechSynthesisUtterance("You require" + p1nokoriscore[5])
                         uttr.lang = "en-GB"
                         speechSynthesis.speak(uttr)
                     }
@@ -1817,11 +1969,19 @@
                     P1R13.value = '';
                     P1R14.value = '';
                     P1R15.value = '';
-                } else if (p2nokoriscore[7] !== 0) {
+                } else if (p2nokoriscore[7] !== 0 && P1R8.value != "") {
                     if (p1nokoriscore[7] >= 2 && p1nokoriscore[7] <= 158 || p1nokoriscore[7] === 160 ||
                         p1nokoriscore[7] === 161 || p1nokoriscore[7] === 164 || p1nokoriscore[7] === 167 ||
                         p1nokoriscore[7] === 170) {
                         const uttr = new SpeechSynthesisUtterance("You require" + p1nokoriscore[7])
+                        uttr.lang = "en-GB"
+                        speechSynthesis.speak(uttr)
+                    }
+                } else if (p2nokoriscore[7] !== 0 && P1R8.value == "") {
+                    if (p1nokoriscore[6] >= 2 && p1nokoriscore[6] <= 158 || p1nokoriscore[6] === 160 ||
+                        p1nokoriscore[6] === 161 || p1nokoriscore[6] === 164 || p1nokoriscore[6] === 167 ||
+                        p1nokoriscore[6] === 170) {
+                        const uttr = new SpeechSynthesisUtterance("You require" + p1nokoriscore[6])
                         uttr.lang = "en-GB"
                         speechSynthesis.speak(uttr)
                     }
@@ -1896,11 +2056,19 @@
                     P1R13.value = '';
                     P1R14.value = '';
                     P1R15.value = '';
-                } else if (p2nokoriscore[8] !== 0) {
+                } else if (p2nokoriscore[8] !== 0 && P1R9.value != "") {
                     if (p1nokoriscore[8] >= 2 && p1nokoriscore[8] <= 158 || p1nokoriscore[8] === 160 ||
                         p1nokoriscore[8] === 161 || p1nokoriscore[8] === 164 || p1nokoriscore[8] === 167 ||
                         p1nokoriscore[8] === 170) {
                         const uttr = new SpeechSynthesisUtterance("You require" + p1nokoriscore[8])
+                        uttr.lang = "en-GB"
+                        speechSynthesis.speak(uttr)
+                    }
+                } else if (p2nokoriscore[8] !== 0 && P1R9.value == "") {
+                    if (p1nokoriscore[7] >= 2 && p1nokoriscore[7] <= 158 || p1nokoriscore[7] === 160 ||
+                        p1nokoriscore[7] === 161 || p1nokoriscore[7] === 164 || p1nokoriscore[7] === 167 ||
+                        p1nokoriscore[7] === 170) {
+                        const uttr = new SpeechSynthesisUtterance("You require" + p1nokoriscore[7])
                         uttr.lang = "en-GB"
                         speechSynthesis.speak(uttr)
                     }
@@ -1974,11 +2142,19 @@
                     P1R13.value = '';
                     P1R14.value = '';
                     P1R15.value = '';
-                } else if (p2nokoriscore[9] !== 0) {
+                } else if (p2nokoriscore[9] !== 0 && P1R10.value != "") {
                     if (p1nokoriscore[9] >= 2 && p1nokoriscore[9] <= 158 || p1nokoriscore[9] === 160 ||
                         p1nokoriscore[9] === 161 || p1nokoriscore[9] === 164 || p1nokoriscore[9] === 167 ||
                         p1nokoriscore[9] === 170) {
                         const uttr = new SpeechSynthesisUtterance("You require" + p1nokoriscore[9])
+                        uttr.lang = "en-GB"
+                        speechSynthesis.speak(uttr)
+                    }
+                } else if (p2nokoriscore[9] !== 0 && P1R10.value == "") {
+                    if (p1nokoriscore[8] >= 2 && p1nokoriscore[8] <= 158 || p1nokoriscore[8] === 160 ||
+                        p1nokoriscore[8] === 161 || p1nokoriscore[8] === 164 || p1nokoriscore[8] === 167 ||
+                        p1nokoriscore[8] === 170) {
+                        const uttr = new SpeechSynthesisUtterance("You require" + p1nokoriscore[8])
                         uttr.lang = "en-GB"
                         speechSynthesis.speak(uttr)
                     }
@@ -2052,11 +2228,19 @@
                     P1R13.value = '';
                     P1R14.value = '';
                     P1R15.value = '';
-                } else if (p2nokoriscore[10] !== 0) {
+                } else if (p2nokoriscore[10] !== 0 && P1R11.value != "") {
                     if (p1nokoriscore[10] >= 2 && p1nokoriscore[10] <= 158 || p1nokoriscore[10] === 160 ||
                         p1nokoriscore[10] === 161 || p1nokoriscore[10] === 164 || p1nokoriscore[10] === 167 ||
                         p1nokoriscore[10] === 170) {
                         const uttr = new SpeechSynthesisUtterance("You require" + p1nokoriscore[10])
+                        uttr.lang = "en-GB"
+                        speechSynthesis.speak(uttr)
+                    }
+                } else if (p2nokoriscore[10] !== 0 && P1R11.value == "") {
+                    if (p1nokoriscore[9] >= 2 && p1nokoriscore[9] <= 158 || p1nokoriscore[9] === 160 ||
+                        p1nokoriscore[9] === 161 || p1nokoriscore[9] === 164 || p1nokoriscore[9] === 167 ||
+                        p1nokoriscore[9] === 170) {
+                        const uttr = new SpeechSynthesisUtterance("You require" + p1nokoriscore[9])
                         uttr.lang = "en-GB"
                         speechSynthesis.speak(uttr)
                     }
@@ -2130,11 +2314,19 @@
                     P1R13.value = '';
                     P1R14.value = '';
                     P1R15.value = '';
-                } else if (p2nokoriscore[11] !== 0) {
+                } else if (p2nokoriscore[11] !== 0 && P1R12.value != "") {
                     if (p1nokoriscore[11] >= 2 && p1nokoriscore[11] <= 158 || p1nokoriscore[11] === 160 ||
                         p1nokoriscore[11] === 161 || p1nokoriscore[11] === 164 || p1nokoriscore[11] === 167 ||
                         p1nokoriscore[11] === 170) {
                         const uttr = new SpeechSynthesisUtterance("You require" + p1nokoriscore[11])
+                        uttr.lang = "en-GB"
+                        speechSynthesis.speak(uttr)
+                    }
+                } else if (p2nokoriscore[11] !== 0 && P1R12.value == "") {
+                    if (p1nokoriscore[10] >= 2 && p1nokoriscore[10] <= 158 || p1nokoriscore[10] === 160 ||
+                        p1nokoriscore[10] === 161 || p1nokoriscore[10] === 164 || p1nokoriscore[10] === 167 ||
+                        p1nokoriscore[10] === 170) {
+                        const uttr = new SpeechSynthesisUtterance("You require" + p1nokoriscore[10])
                         uttr.lang = "en-GB"
                         speechSynthesis.speak(uttr)
                     }
@@ -2208,11 +2400,19 @@
                     P1R13.value = '';
                     P1R14.value = '';
                     P1R15.value = '';
-                } else if (p2nokoriscore[12] !== 0) {
+                } else if (p2nokoriscore[12] !== 0 && P1R13.value != "") {
                     if (p1nokoriscore[12] >= 2 && p1nokoriscore[12] <= 158 || p1nokoriscore[12] === 160 ||
                         p1nokoriscore[12] === 161 || p1nokoriscore[12] === 164 || p1nokoriscore[12] === 167 ||
                         p1nokoriscore[12] === 170) {
                         const uttr = new SpeechSynthesisUtterance("You require" + p1nokoriscore[12])
+                        uttr.lang = "en-GB"
+                        speechSynthesis.speak(uttr)
+                    }
+                } else if (p2nokoriscore[12] !== 0 && P1R13.value == "") {
+                    if (p1nokoriscore[11] >= 2 && p1nokoriscore[11] <= 158 || p1nokoriscore[11] === 160 ||
+                        p1nokoriscore[11] === 161 || p1nokoriscore[11] === 164 || p1nokoriscore[11] === 167 ||
+                        p1nokoriscore[11] === 170) {
+                        const uttr = new SpeechSynthesisUtterance("You require" + p1nokoriscore[11])
                         uttr.lang = "en-GB"
                         speechSynthesis.speak(uttr)
                     }
@@ -2286,11 +2486,19 @@
                     P1R13.value = '';
                     P1R14.value = '';
                     P1R15.value = '';
-                } else if (p2nokoriscore[13] !== 0) {
+                } else if (p2nokoriscore[13] !== 0 && P1R12.value != "") {
                     if (p1nokoriscore[13] >= 2 && p1nokoriscore[13] <= 158 || p1nokoriscore[13] === 160 ||
                         p1nokoriscore[13] === 161 || p1nokoriscore[13] === 164 || p1nokoriscore[13] === 167 ||
                         p1nokoriscore[13] === 170) {
                         const uttr = new SpeechSynthesisUtterance("You require" + p1nokoriscore[13])
+                        uttr.lang = "en-GB"
+                        speechSynthesis.speak(uttr)
+                    }
+                } else if (p2nokoriscore[13] !== 0 && P1R12.value == "") {
+                    if (p1nokoriscore[12] >= 2 && p1nokoriscore[12] <= 158 || p1nokoriscore[12] === 160 ||
+                        p1nokoriscore[12] === 161 || p1nokoriscore[12] === 164 || p1nokoriscore[12] === 167 ||
+                        p1nokoriscore[12] === 170) {
+                        const uttr = new SpeechSynthesisUtterance("You require" + p1nokoriscore[12])
                         uttr.lang = "en-GB"
                         speechSynthesis.speak(uttr)
                     }
@@ -2364,11 +2572,19 @@
                     P1R13.value = '';
                     P1R14.value = '';
                     P1R15.value = '';
-                } else if (p2nokoriscore[14] !== 0) {
+                } else if (p2nokoriscore[14] !== 0 && P1R15.value != "") {
                     if (p1nokoriscore[14] >= 2 && p1nokoriscore[14] <= 158 || p1nokoriscore[14] === 160 ||
                         p1nokoriscore[14] === 161 || p1nokoriscore[14] === 164 || p1nokoriscore[14] === 167 ||
                         p1nokoriscore[14] === 170) {
                         const uttr = new SpeechSynthesisUtterance("You require" + p1nokoriscore[14])
+                        uttr.lang = "en-GB"
+                        speechSynthesis.speak(uttr)
+                    }
+                } else if (p2nokoriscore[14] !== 0 && P1R15.value != "") {
+                    if (p1nokoriscore[13] >= 2 && p1nokoriscore[13] <= 158 || p1nokoriscore[13] === 160 ||
+                        p1nokoriscore[13] === 161 || p1nokoriscore[13] === 164 || p1nokoriscore[13] === 167 ||
+                        p1nokoriscore[13] === 170) {
+                        const uttr = new SpeechSynthesisUtterance("You require" + p1nokoriscore[13])
                         uttr.lang = "en-GB"
                         speechSynthesis.speak(uttr)
                     }
