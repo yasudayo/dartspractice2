@@ -31,10 +31,11 @@
     <p id="player1Score"></p>
     <p id="player1Leg"></p>
     <p id="player1Average"></p>
+    <p id="p1name"></p>
 
 
     <div id="second">
-        <input type="text" id="P2R1" placeholder="">
+        <input type="text" id="P2R1" placeholder="" name="p2r1">
         <input type="text" id="P2R2" placeholder="">
         <input type="text" id="P2R3" placeholder="">
         <input type="text" id="P2R4" placeholder="">
@@ -54,6 +55,7 @@
     <p id="player2Score"></p>
     <p id="player2Leg"></p>
     <p id="player2Average"></p>
+    <p id="p2name"></p>
 
     <div id="rounds">
         <input type="number" id="round" value="1" min="1" max="1">
@@ -72,6 +74,9 @@
         <input type="number" id="round" value="14" min="414" max="14">
         <input type="number" id="round" value="15" min="15" max="15">
     </div>
+    <div id="text"></div>
+    <input type="text" id="t1" placeholder="ローマ字を入力してください">
+    <input type="text" id="t2" placeholder="ローマ字を入力してください">
     <script>
         let P1R1 = document.getElementById('P1R1');
         let P1R2 = document.getElementById('P1R2');
@@ -135,6 +140,9 @@
         P2R14.value = '';
         P2R15.value = '';
 
+        let round = document.getElementById('rounds');
+        const text = document.getElementById('text');
+        text.innerText = "1Pの名前を入力してください";
         let p2score = [];
         let p2nokoriscore = [];
         let Player2ScoreShoki = 501;
@@ -159,9 +167,63 @@
         let player1LegShoki = "LEG:" + p1Leg;
         let player1AverageShoki = "AVG:" + p1average;
         let nokori;
+        let p1Name = document.getElementById('p1name');
+        let p2Name = document.getElementById('p2name');
+        let t1 = document.getElementById('t1');
+        let t2 = document.getElementById('t2');
+        let first = document.getElementById('first');
+        let second = document.getElementById('second');
         player1Leg.innerText = player1LegShoki;
         player1Score.innerText = Player1ScoreShoki;
         player1Average.innerText = "AVG:" + 0;
+
+        player1Score.style.display = 'none';
+        player1Leg.style.display = 'none';
+        player1Average.style.display = 'none';
+        first.style.display = 'none';
+        p1Name.style.display = 'none';
+
+        player2Score.style.display = 'none';
+        player2Leg.style.display = 'none';
+        player2Average.style.display = 'none';
+        t2.style.display = 'none';
+        second.style.display = 'none';
+        p2Name.style.display = 'none';
+        round.style.display = 'none';
+
+
+        document.addEventListener('keydown', (event) => {
+            if (event.keyCode == 13 && t1.value !== '') {
+                t1.style.display = 'none';
+                text.innerText = "2Pの名前を入力してください"
+                t2.style.display = 'block';
+
+            }
+            if (event.keyCode == 13 && t2.value !== '') {
+                p2Name === t2.value;
+                t2.style.display = 'none';
+                text.style.display = 'none';
+                set()
+            }
+        })
+
+        function set () {
+            round.style.display = 'block';
+            player1Score.style.display = 'block';
+            player1Leg.style.display = 'block';
+            player1Average.style.display = 'block';
+            first.style.display = 'block';
+            p1Name.innerText =  t1.value;
+            p1Name.style.display = 'block';
+
+            player2Score.style.display = 'block';
+            player2Leg.style.display = 'block';
+            player2Average.style.display = 'block';
+            second.style.display = 'block';
+            p2Name.innerText = t2.value;
+            p2Name.style.display = 'block';
+        }
+
         document.addEventListener('keydown', (event) => {
             if (event.keyCode == 13 && P1R1.value != '' && p1score.length == 0) {
                 if (P1R1.value <= 0) {
@@ -182,6 +244,11 @@
                 console.log(p1average);
                 console.log(p1nokoriscore);
                 console.log(player1Score);
+                if (P2R1.value == "") {
+                    document.getElementById('P2R1').focus()
+                }else {
+                    document.getElementById('P2R2').focus()
+                }
             }
             if (event.keyCode == 13 && P1R2.value != '' && p1score.length == 1) {
                 if (P1R2.value <= 0) {
@@ -205,9 +272,14 @@
                 if (p2nokoriscore[1] >= 2 && p2nokoriscore[1] <= 158 || p2nokoriscore[1] === 160 ||
                     p2nokoriscore[1] === 161 || p2nokoriscore[1] === 164 || p2nokoriscore[1] === 167 ||
                     p2nokoriscore[1] === 170) {
-                    const uttr = new SpeechSynthesisUtterance("You require" + p2nokoriscore[1])
+                    const uttr = new SpeechSynthesisUtterance(p2Name.innerText + "You require" + p2nokoriscore[1])
                     uttr.lang = "en-GB"
                     speechSynthesis.speak(uttr)
+                }
+                if (P2R2.value == "") {
+                    document.getElementById('P2R2').focus()
+                }else {
+                    document.getElementById('P2R3').focus()
                 }
             }
             if (event.keyCode == 13 && P1R3.value != '' && p1score.length == 2) {
@@ -285,7 +357,7 @@
                     if (p2nokoriscore[1] >= 2 && p2nokoriscore[1] <= 158 || p2nokoriscore[1] === 160 ||
                         p2nokoriscore[1] === 161 || p2nokoriscore[1] === 164 || p2nokoriscore[1] === 167 ||
                         p2nokoriscore[1] === 170) {
-                        const uttr = new SpeechSynthesisUtterance("You require" + p2nokoriscore[1])
+                        const uttr = new SpeechSynthesisUtterance(p2Name.innerText + "You require" + p2nokoriscore[1])
                         uttr.lang = "en-GB"
                         speechSynthesis.speak(uttr)
                     }
@@ -293,10 +365,15 @@
                     if (p2nokoriscore[2] >= 2 && p2nokoriscore[2] <= 158 || p2nokoriscore[2] === 160 ||
                         p2nokoriscore[2] === 161 || p2nokoriscore[2] === 164 || p2nokoriscore[2] === 167 ||
                         p2nokoriscore[2] === 170) {
-                        const uttr = new SpeechSynthesisUtterance("You require" + p2nokoriscore[2])
+                        const uttr = new SpeechSynthesisUtterance(p2Name.innerText + "You require" + p2nokoriscore[2])
                         uttr.lang = "en-GB"
                         speechSynthesis.speak(uttr)
                     }
+                }
+                if (P2R3.value == "") {
+                    document.getElementById('P2R3').focus()
+                }else {
+                    document.getElementById('P2R4').focus()
                 }
             }
             if (event.keyCode == 13 && P1R4.value != '' && p1score.length == 3) {
@@ -371,7 +448,7 @@
                     if (p2nokoriscore[2] >= 2 && p2nokoriscore[2] <= 158 || p2nokoriscore[2] === 160 ||
                         p2nokoriscore[2] === 161 || p2nokoriscore[2] === 164 || p2nokoriscore[2] === 167 ||
                         p2nokoriscore[2] === 170) {
-                        const uttr = new SpeechSynthesisUtterance("You require" + p2nokoriscore[2])
+                        const uttr = new SpeechSynthesisUtterance(p2Name.innerText + "You require" + p2nokoriscore[2])
                         uttr.lang = "en-GB"
                         speechSynthesis.speak(uttr)
                     }
@@ -379,10 +456,15 @@
                     if (p2nokoriscore[3] >= 2 && p2nokoriscore[3] <= 158 || p2nokoriscore[3] === 160 ||
                         p2nokoriscore[3] === 161 || p2nokoriscore[3] === 164 || p2nokoriscore[3] === 167 ||
                         p2nokoriscore[3] === 170) {
-                        const uttr = new SpeechSynthesisUtterance("You require" + p2nokoriscore[3])
+                        const uttr = new SpeechSynthesisUtterance(p2Name.innerText + "You require" + p2nokoriscore[3])
                         uttr.lang = "en-GB"
                         speechSynthesis.speak(uttr)
-                        }
+                    }
+                }
+                if (P2R4.value == "") {
+                    document.getElementById('P2R4').focus()
+                }else {
+                    document.getElementById('P2R5').focus()
                 }
             }
             if (event.keyCode == 13 && P1R5.value != '' && p1score.length == 4) {
@@ -455,7 +537,7 @@
                     if (p2nokoriscore[3] >= 2 && p2nokoriscore[3] <= 158 || p2nokoriscore[3] === 160 ||
                         p2nokoriscore[3] === 161 || p2nokoriscore[3] === 164 || p2nokoriscore[3] === 167 ||
                         p2nokoriscore[3] === 170) {
-                        const uttr = new SpeechSynthesisUtterance("You require" + p2nokoriscore[3])
+                        const uttr = new SpeechSynthesisUtterance(p2Name.innerText + "You require" + p2nokoriscore[3])
                         uttr.lang = "en-GB"
                         speechSynthesis.speak(uttr)
                     }
@@ -463,10 +545,15 @@
                     if (p2nokoriscore[4] >= 2 && p2nokoriscore[4] <= 158 || p2nokoriscore[4] === 160 ||
                         p2nokoriscore[4] === 161 || p2nokoriscore[4] === 164 || p2nokoriscore[4] === 167 ||
                         p2nokoriscore[4] === 170) {
-                        const uttr = new SpeechSynthesisUtterance("You require" + p2nokoriscore[4])
+                        const uttr = new SpeechSynthesisUtterance(p2Name.innerText + "You require" + p2nokoriscore[4])
                         uttr.lang = "en-GB"
                         speechSynthesis.speak(uttr)
                     }
+                }
+                if (P2R5.value == "") {
+                    document.getElementById('P2R5').focus()
+                }else {
+                    document.getElementById('P2R6').focus()
                 }
             }
             if (event.keyCode == 13 && P1R6.value != '' && p1score.length == 5) {
@@ -539,7 +626,7 @@
                     if (p2nokoriscore[4] >= 2 && p2nokoriscore[4] <= 158 || p2nokoriscore[4] === 160 ||
                         p2nokoriscore[4] === 161 || p2nokoriscore[4] === 164 || p2nokoriscore[4] === 167 ||
                         p2nokoriscore[4] === 170) {
-                        const uttr = new SpeechSynthesisUtterance("You require" + p2nokoriscore[4])
+                        const uttr = new SpeechSynthesisUtterance(p2Name.innerText + "You require" + p2nokoriscore[4])
                         uttr.lang = "en-GB"
                         speechSynthesis.speak(uttr)
                     }
@@ -547,10 +634,15 @@
                     if (p2nokoriscore[5] >= 2 && p2nokoriscore[5] <= 158 || p2nokoriscore[5] === 160 ||
                         p2nokoriscore[5] === 161 || p2nokoriscore[5] === 164 || p2nokoriscore[5] === 167 ||
                         p2nokoriscore[5] === 170) {
-                        const uttr = new SpeechSynthesisUtterance("You require" + p2nokoriscore[5])
+                        const uttr = new SpeechSynthesisUtterance(p2Name.innerText + "You require" + p2nokoriscore[5])
                         uttr.lang = "en-GB"
                         speechSynthesis.speak(uttr)
                     }
+                }
+                if (P2R6.value == "") {
+                    document.getElementById('P2R6').focus()
+                }else {
+                    document.getElementById('P2R7').focus()
                 }
             }
             if (event.keyCode == 13 && P1R7.value != '' && p1score.length == 6) {
@@ -623,7 +715,7 @@
                     if (p2nokoriscore[5] >= 2 && p2nokoriscore[5] <= 158 || p2nokoriscore[5] === 160 ||
                         p2nokoriscore[5] === 161 || p2nokoriscore[5] === 164 || p2nokoriscore[5] === 167 ||
                         p2nokoriscore[5] === 170) {
-                        const uttr = new SpeechSynthesisUtterance("You require" + p2nokoriscore[5])
+                        const uttr = new SpeechSynthesisUtterance(p2Name.innerText + "You require" + p2nokoriscore[5])
                         uttr.lang = "en-GB"
                         speechSynthesis.speak(uttr)
                     }
@@ -631,10 +723,15 @@
                     if (p2nokoriscore[6] >= 2 && p2nokoriscore[6] <= 158 || p2nokoriscore[6] === 160 ||
                         p2nokoriscore[6] === 161 || p2nokoriscore[6] === 164 || p2nokoriscore[6] === 167 ||
                         p2nokoriscore[6] === 170) {
-                        const uttr = new SpeechSynthesisUtterance("You require" + p2nokoriscore[6])
+                        const uttr = new SpeechSynthesisUtterance(p2Name.innerText + "You require" + p2nokoriscore[6])
                         uttr.lang = "en-GB"
                         speechSynthesis.speak(uttr)
                     }
+                }
+                if (P2R7.value == "") {
+                    document.getElementById('P2R7').focus()
+                }else {
+                    document.getElementById('P2R8').focus()
                 }
             }
             if (event.keyCode == 13 && P1R8.value != '' && p1score.length == 7) {
@@ -707,7 +804,7 @@
                     if (p2nokoriscore[6] >= 2 && p2nokoriscore[6] <= 158 || p2nokoriscore[6] === 160 ||
                         p2nokoriscore[6] === 161 || p2nokoriscore[6] === 164 || p2nokoriscore[6] === 167 ||
                         p2nokoriscore[6] === 170) {
-                        const uttr = new SpeechSynthesisUtterance("You require" + p2nokoriscore[6])
+                        const uttr = new SpeechSynthesisUtterance(p2Name.innerText + "You require" + p2nokoriscore[6])
                         uttr.lang = "en-GB"
                         speechSynthesis.speak(uttr)
                     }
@@ -715,10 +812,15 @@
                     if (p2nokoriscore[7] >= 2 && p2nokoriscore[7] <= 158 || p2nokoriscore[7] === 160 ||
                         p2nokoriscore[7] === 161 || p2nokoriscore[7] === 164 || p2nokoriscore[7] === 167 ||
                         p2nokoriscore[7] === 170) {
-                        const uttr = new SpeechSynthesisUtterance("You require" + p2nokoriscore[7])
+                        const uttr = new SpeechSynthesisUtterance(p2Name.innerText + "You require" + p2nokoriscore[7])
                         uttr.lang = "en-GB"
                         speechSynthesis.speak(uttr)
                     }
+                }
+                if (P2R8.value == "") {
+                    document.getElementById('P2R8').focus()
+                }else {
+                    document.getElementById('P2R9').focus()
                 }
             }
             if (event.keyCode == 13 && P1R9.value != '' && p1score.length == 8) {
@@ -791,7 +893,7 @@
                     if (p2nokoriscore[7] >= 2 && p2nokoriscore[7] <= 158 || p2nokoriscore[7] === 160 ||
                         p2nokoriscore[7] === 161 || p2nokoriscore[7] === 164 || p2nokoriscore[7] === 167 ||
                         p2nokoriscore[7] === 170) {
-                        const uttr = new SpeechSynthesisUtterance("You require" + p2nokoriscore[7])
+                        const uttr = new SpeechSynthesisUtterance(p2Name.innerText + "You require" + p2nokoriscore[7])
                         uttr.lang = "en-GB"
                         speechSynthesis.speak(uttr)
                     }
@@ -799,10 +901,15 @@
                     if (p2nokoriscore[8] >= 2 && p2nokoriscore[8] <= 158 || p2nokoriscore[8] === 160 ||
                         p2nokoriscore[8] === 161 || p2nokoriscore[8] === 164 || p2nokoriscore[8] === 167 ||
                         p2nokoriscore[8] === 170) {
-                        const uttr = new SpeechSynthesisUtterance("You require" + p2nokoriscore[8])
+                        const uttr = new SpeechSynthesisUtterance(p2Name.innerText + "You require" + p2nokoriscore[8])
                         uttr.lang = "en-GB"
                         speechSynthesis.speak(uttr)
                     }
+                }
+                if (P2R9.value == "") {
+                    document.getElementById('P2R9').focus()
+                }else {
+                    document.getElementById('P2R10').focus()
                 }
             }
             if (event.keyCode == 13 && P1R10.value != '' && p1score.length == 9) {
@@ -875,7 +982,7 @@
                     if (p2nokoriscore[8] >= 2 && p2nokoriscore[8] <= 158 || p2nokoriscore[8] === 160 ||
                         p2nokoriscore[8] === 161 || p2nokoriscore[8] === 164 || p2nokoriscore[8] === 167 ||
                         p2nokoriscore[8] === 170) {
-                        const uttr = new SpeechSynthesisUtterance("You require" + p2nokoriscore[8])
+                        const uttr = new SpeechSynthesisUtterance(p2Name.innerText + "You require" + p2nokoriscore[8])
                         uttr.lang = "en-GB"
                         speechSynthesis.speak(uttr)
                     }
@@ -883,10 +990,15 @@
                     if (p2nokoriscore[9] >= 2 && p2nokoriscore[8] <= 158 || p2nokoriscore[9] === 160 ||
                         p2nokoriscore[9] === 161 || p2nokoriscore[8] === 164 || p2nokoriscore[9] === 167 ||
                         p2nokoriscore[9] === 170) {
-                        const uttr = new SpeechSynthesisUtterance("You require" + p2nokoriscore[9])
+                        const uttr = new SpeechSynthesisUtterance(p2Name.innerText + "You require" + p2nokoriscore[9])
                         uttr.lang = "en-GB"
                         speechSynthesis.speak(uttr)
                     }
+                }
+                if (P2R10.value == "") {
+                    document.getElementById('P2R10').focus()
+                }else {
+                    document.getElementById('P2R11').focus()
                 }
             }
             if (event.keyCode == 13 && P1R11.value != '' && p1score.length == 10) {
@@ -959,7 +1071,7 @@
                     if (p2nokoriscore[9] >= 2 && p2nokoriscore[9] <= 158 || p2nokoriscore[9] === 160 ||
                         p2nokoriscore[9] === 161 || p2nokoriscore[9] === 164 || p2nokoriscore[9] === 167 ||
                         p2nokoriscore[9] === 170) {
-                        const uttr = new SpeechSynthesisUtterance("You require" + p2nokoriscore[9])
+                        const uttr = new SpeechSynthesisUtterance(p2Name.innerText + "You require" + p2nokoriscore[9])
                         uttr.lang = "en-GB"
                         speechSynthesis.speak(uttr)
                     }
@@ -967,10 +1079,15 @@
                     if (p2nokoriscore[10] >= 2 && p2nokoriscore[10] <= 158 || p2nokoriscore[10] === 160 ||
                         p2nokoriscore[10] === 161 || p2nokoriscore[10] === 164 || p2nokoriscore[10] === 167 ||
                         p2nokoriscore[10] === 170) {
-                        const uttr = new SpeechSynthesisUtterance("You require" + p2nokoriscore[10])
+                        const uttr = new SpeechSynthesisUtterance(p2Name.innerText + "You require" + p2nokoriscore[10])
                         uttr.lang = "en-GB"
                         speechSynthesis.speak(uttr)
                     }
+                }
+                if (P2R11.value == "") {
+                    document.getElementById('P2R11').focus()
+                }else {
+                    document.getElementById('P2R12').focus()
                 }
             }
             if (event.keyCode == 13 && P1R12.value != '' && p1score.length == 11) {
@@ -1043,7 +1160,7 @@
                     if (p2nokoriscore[10] >= 2 && p2nokoriscore[10] <= 158 || p2nokoriscore[10] === 160 ||
                         p2nokoriscore[10] === 161 || p2nokoriscore[10] === 164 || p2nokoriscore[10] === 167 ||
                         p2nokoriscore[10] === 170) {
-                        const uttr = new SpeechSynthesisUtterance("You require" + p2nokoriscore[10])
+                        const uttr = new SpeechSynthesisUtterance(p2Name.innerText + "You require" + p2nokoriscore[10])
                         uttr.lang = "en-GB"
                         speechSynthesis.speak(uttr)
                     }
@@ -1051,10 +1168,15 @@
                     if (p2nokoriscore[11] >= 2 && p2nokoriscore[11] <= 158 || p2nokoriscore[11] === 160 ||
                         p2nokoriscore[11] === 161 || p2nokoriscore[11] === 164 || p2nokoriscore[11] === 167 ||
                         p2nokoriscore[11] === 170) {
-                        const uttr = new SpeechSynthesisUtterance("You require" + p2nokoriscore[11])
+                        const uttr = new SpeechSynthesisUtterance(p2Name.innerText + "You require" + p2nokoriscore[11])
                         uttr.lang = "en-GB"
                         speechSynthesis.speak(uttr)
                     }
+                }
+                if (P2R12.value == "") {
+                    document.getElementById('P2R12').focus()
+                }else {
+                    document.getElementById('P2R13').focus()
                 }
             }
             if (event.keyCode == 13 && P1R13.value != '' && p1score.length == 12) {
@@ -1127,7 +1249,7 @@
                     if (p2nokoriscore[11] >= 2 && p2nokoriscore[11] <= 158 || p2nokoriscore[11] === 160 ||
                         p2nokoriscore[11] === 161 || p2nokoriscore[11] === 164 || p2nokoriscore[11] === 167 ||
                         p2nokoriscore[11] === 170) {
-                        const uttr = new SpeechSynthesisUtterance("You require" + p2nokoriscore[11])
+                        const uttr = new SpeechSynthesisUtterance(p2Name.innerText + "You require" + p2nokoriscore[11])
                         uttr.lang = "en-GB"
                         speechSynthesis.speak(uttr)
                     }
@@ -1135,10 +1257,15 @@
                     if (p2nokoriscore[12] >= 2 && p2nokoriscore[12] <= 158 || p2nokoriscore[12] === 160 ||
                         p2nokoriscore[12] === 161 || p2nokoriscore[12] === 164 || p2nokoriscore[12] === 167 ||
                         p2nokoriscore[12] === 170) {
-                        const uttr = new SpeechSynthesisUtterance("You require" + p2nokoriscore[12])
+                        const uttr = new SpeechSynthesisUtterance(p2Name.innerText + "You require" + p2nokoriscore[12])
                         uttr.lang = "en-GB"
                         speechSynthesis.speak(uttr)
                     }
+                }
+                if (P2R13.value == "") {
+                    document.getElementById('P2R13').focus()
+                }else {
+                    document.getElementById('P2R14').focus()
                 }
             }
             if (event.keyCode == 13 && P1R14.value != '' && p1score.length == 13) {
@@ -1211,7 +1338,7 @@
                     if (p2nokoriscore[12] >= 2 && p2nokoriscore[12] <= 158 || p2nokoriscore[12] === 160 ||
                         p2nokoriscore[12] === 161 || p2nokoriscore[12] === 164 || p2nokoriscore[12] === 167 ||
                         p2nokoriscore[12] === 170) {
-                        const uttr = new SpeechSynthesisUtterance("You require" + p2nokoriscore[12])
+                        const uttr = new SpeechSynthesisUtterance(p2Name.innerText + "You require" + p2nokoriscore[12])
                         uttr.lang = "en-GB"
                         speechSynthesis.speak(uttr)
                     }
@@ -1219,10 +1346,15 @@
                     if (p2nokoriscore[13] >= 2 && p2nokoriscore[13] <= 158 || p2nokoriscore[13] === 160 ||
                         p2nokoriscore[13] === 161 || p2nokoriscore[13] === 164 || p2nokoriscore[13] === 167 ||
                         p2nokoriscore[13] === 170) {
-                        const uttr = new SpeechSynthesisUtterance("You require" + p2nokoriscore[13])
+                        const uttr = new SpeechSynthesisUtterance(p2Name.innerText + "You require" + p2nokoriscore[13])
                         uttr.lang = "en-GB"
                         speechSynthesis.speak(uttr)
                     }
+                }
+                if (P2R14.value == "") {
+                    document.getElementById('P2R14').focus()
+                }else {
+                    document.getElementById('P2R15').focus()
                 }
             }
             if (event.keyCode == 13 && P1R15.value != '' && p1score.length == 14) {
@@ -1234,6 +1366,9 @@
                     const uttr = new SpeechSynthesisUtterance(P1R15.value)
                     uttr.lang = "en-GB"
                     speechSynthesis.speak(uttr)
+                }
+                if (P2R15.value == "") {
+                    document.getElementById('P2R15').focus()
                 }
                 p1score.push(P1R15.value);
                 p1average.push(P1R15.value);
@@ -1295,7 +1430,7 @@
                     if (p2nokoriscore[13] >= 2 && p2nokoriscore[13] <= 158 || p2nokoriscore[13] === 160 ||
                         p2nokoriscore[13] === 161 || p2nokoriscore[13] === 164 || p2nokoriscore[13] === 167 ||
                         p2nokoriscore[13] === 170) {
-                        const uttr = new SpeechSynthesisUtterance("You require" + p2nokoriscore[13])
+                        const uttr = new SpeechSynthesisUtterance(p2Name.innerText + "You require" + p2nokoriscore[13])
                         uttr.lang = "en-GB"
                         speechSynthesis.speak(uttr)
                     }
@@ -1303,7 +1438,7 @@
                     if (p2nokoriscore[14] >= 2 && p2nokoriscore[14] <= 158 || p2nokoriscore[14] === 160 ||
                         p2nokoriscore[14] === 161 || p2nokoriscore[14] === 164 || p2nokoriscore[14] === 167 ||
                         p2nokoriscore[14] === 170) {
-                        const uttr = new SpeechSynthesisUtterance("You require" + p2nokoriscore[14])
+                        const uttr = new SpeechSynthesisUtterance(p2Name.innerText + "You require" + p2nokoriscore[14])
                         uttr.lang = "en-GB"
                         speechSynthesis.speak(uttr)
                     }
@@ -1426,6 +1561,7 @@
 
         document.addEventListener('keydown', (event) => {
             if (event.keyCode === 13 && P2R1.value != '' && p2score.length == 0) {
+                document.getElementById('P1R1').focus()
                 if (P2R1.value <= 0) {
                     const uttr = new SpeechSynthesisUtterance("No Score")
                     uttr.lang = "en-GB"
@@ -1442,6 +1578,11 @@
                 player2Average.innerText = "AVG:" + p2average[0];
                 console.log(p2nokoriscore);
                 console.log(player2Score);
+                if (P1R1.value == "") {
+                    document.getElementById('P1R1').focus()
+                }else {
+                    document.getElementById('P1R2').focus()
+                }
             }
             if (event.keyCode === 13 && P2R2.value != '' && p2score.length == 1) {
                 if (P2R2.value <= 0) {
@@ -1459,11 +1600,16 @@
                 p2nokoriscore.push(p2nokoriscore[0] - p2score[1]);
                 player2Score.innerText = p2nokoriscore[1];
                 player2Average.innerText = `AVG:${(p2average[0]) / 2 + (p2average[1]) / 2}`;
+                if (P1R2.value == "") {
+                    document.getElementById('P1R2').focus()
+                }else {
+                    document.getElementById('P1R3').focus()
+                }
 
                 if (p1nokoriscore[1] >= 2 && p1nokoriscore[1] <= 158 || p1nokoriscore[1] === 160 ||
                     p1nokoriscore[1] === 161 || p1nokoriscore[1] === 164 || p1nokoriscore[1] === 167 ||
                     p1nokoriscore[1] === 170) {
-                    const uttr = new SpeechSynthesisUtterance("You require" + p1nokoriscore[1])
+                    const uttr = new SpeechSynthesisUtterance(p1Name.innerText + "You require" + p1nokoriscore[1])
                     uttr.lang = "en-GB"
                     speechSynthesis.speak(uttr)
                 }
@@ -1542,7 +1688,7 @@
                     if (p1nokoriscore[1] >= 2 && p1nokoriscore[1] <= 158 || p1nokoriscore[1] === 160 ||
                         p1nokoriscore[1] === 161 || p1nokoriscore[1] === 164 || p1nokoriscore[1] === 167 ||
                         p1nokoriscore[1] === 170) {
-                        const uttr = new SpeechSynthesisUtterance("You require" + p1nokoriscore[1])
+                        const uttr = new SpeechSynthesisUtterance(p1Name.innerText + "You require" + p1nokoriscore[1])
                         uttr.lang = "en-GB"
                         speechSynthesis.speak(uttr)
                     }
@@ -1550,10 +1696,15 @@
                     if (p1nokoriscore[2] >= 2 && p1nokoriscore[2] <= 158 || p1nokoriscore[2] === 160 ||
                         p1nokoriscore[2] === 161 || p1nokoriscore[2] === 164 || p1nokoriscore[2] === 167 ||
                         p1nokoriscore[2] === 170) {
-                        const uttr = new SpeechSynthesisUtterance("You require" + p1nokoriscore[2])
+                        const uttr = new SpeechSynthesisUtterance(p1Name.innerText + "You require" + p1nokoriscore[2])
                         uttr.lang = "en-GB"
                         speechSynthesis.speak(uttr)
                     }
+                }
+                if (P1R3.value == "") {
+                    document.getElementById('P1R3').focus()
+                }else {
+                    document.getElementById('P1R4').focus()
                 }
             }
             if (event.keyCode === 13 && P2R4.value != '' && p2score.length == 3) {
@@ -1628,7 +1779,7 @@
                     if (p1nokoriscore[3] >= 2 && p1nokoriscore[3] <= 158 || p1nokoriscore[3] === 160 ||
                         p1nokoriscore[3] === 161 || p1nokoriscore[3] === 164 || p1nokoriscore[3] === 167 ||
                         p1nokoriscore[3] === 170) {
-                        const uttr = new SpeechSynthesisUtterance("You require" + p1nokoriscore[3])
+                        const uttr = new SpeechSynthesisUtterance(p1Name.innerText + "You require" + p1nokoriscore[3])
                         uttr.lang = "en-GB"
                         speechSynthesis.speak(uttr)
                     }
@@ -1636,10 +1787,15 @@
                     if (p1nokoriscore[2] >= 2 && p1nokoriscore[2] <= 158 || p1nokoriscore[2] === 160 ||
                         p1nokoriscore[2] === 161 || p1nokoriscore[2] === 164 || p1nokoriscore[2] === 167 ||
                         p1nokoriscore[2] === 170) {
-                        const uttr = new SpeechSynthesisUtterance("You require" + p1nokoriscore[2])
+                        const uttr = new SpeechSynthesisUtterance(p1Name.innerText + "You require" + p1nokoriscore[2])
                         uttr.lang = "en-GB"
                         speechSynthesis.speak(uttr)
                     }
+                }
+                if (P1R4.value == "") {
+                    document.getElementById('P1R4').focus()
+                }else {
+                    document.getElementById('P1R5').focus()
                 }
             }
             if (event.keyCode === 13 && P2R5.value != '' && p2score.length == 4) {
@@ -1714,7 +1870,7 @@
                     if (p1nokoriscore[4] >= 2 && p1nokoriscore[4] <= 158 || p1nokoriscore[4] === 160 ||
                         p1nokoriscore[4] === 161 || p1nokoriscore[4] === 164 || p1nokoriscore[4] === 167 ||
                         p1nokoriscore[4] === 170) {
-                        const uttr = new SpeechSynthesisUtterance("You require" + p1nokoriscore[4])
+                        const uttr = new SpeechSynthesisUtterance(p1Name.innerText + "You require" + p1nokoriscore[4])
                         uttr.lang = "en-GB"
                         speechSynthesis.speak(uttr)
                     }
@@ -1722,10 +1878,15 @@
                     if (p1nokoriscore[3] >= 2 && p1nokoriscore[3] <= 158 || p1nokoriscore[3] === 160 ||
                         p1nokoriscore[3] === 161 || p1nokoriscore[3] === 164 || p1nokoriscore[3] === 167 ||
                         p1nokoriscore[3] === 170) {
-                        const uttr = new SpeechSynthesisUtterance("You require" + p1nokoriscore[3])
+                        const uttr = new SpeechSynthesisUtterance(p1Name.innerText + "You require" + p1nokoriscore[3])
                         uttr.lang = "en-GB"
                         speechSynthesis.speak(uttr)
                     }
+                }
+                if (P1R5.value == "") {
+                    document.getElementById('P1R5').focus()
+                }else {
+                    document.getElementById('P1R6').focus()
                 }
             }
             if (event.keyCode === 13 && P2R6.value != '' && p2score.length == 5) {
@@ -1801,7 +1962,7 @@
                     if (p1nokoriscore[5] >= 2 && p1nokoriscore[5] <= 158 || p1nokoriscore[5] === 160 ||
                         p1nokoriscore[5] === 161 || p1nokoriscore[5] === 164 || p1nokoriscore[5] === 167 ||
                         p1nokoriscore[5] === 170) {
-                        const uttr = new SpeechSynthesisUtterance("You require" + p1nokoriscore[5])
+                        const uttr = new SpeechSynthesisUtterance(p1Name.innerText + "You require" + p1nokoriscore[5])
                         uttr.lang = "en-GB"
                         speechSynthesis.speak(uttr)
                     }
@@ -1809,10 +1970,15 @@
                     if (p1nokoriscore[4] >= 2 && p1nokoriscore[4] <= 158 || p1nokoriscore[4] === 160 ||
                         p1nokoriscore[4] === 161 || p1nokoriscore[4] === 164 || p1nokoriscore[4] === 167 ||
                         p1nokoriscore[4] === 170) {
-                        const uttr = new SpeechSynthesisUtterance("You require" + p1nokoriscore[4])
+                        const uttr = new SpeechSynthesisUtterance(p1Name.innerText + "You require" + p1nokoriscore[4])
                         uttr.lang = "en-GB"
                         speechSynthesis.speak(uttr)
                     }
+                }
+                if (P1R6.value == "") {
+                    document.getElementById('P1R6').focus()
+                }else {
+                    document.getElementById('P1R7').focus()
                 }
             }
             if (event.keyCode === 13 && P2R7.value != '' && p2score.length == 6) {
@@ -1887,7 +2053,7 @@
                     if (p1nokoriscore[6] >= 2 && p1nokoriscore[6] <= 158 || p1nokoriscore[6] === 160 ||
                         p1nokoriscore[6] === 161 || p1nokoriscore[6] === 164 || p1nokoriscore[6] === 167 ||
                         p1nokoriscore[6] === 170) {
-                        const uttr = new SpeechSynthesisUtterance("You require" + p1nokoriscore[6])
+                        const uttr = new SpeechSynthesisUtterance(p1Name.innerText + "You require" + p1nokoriscore[6])
                         uttr.lang = "en-GB"
                         speechSynthesis.speak(uttr)
                     }
@@ -1895,10 +2061,15 @@
                     if (p1nokoriscore[5] >= 2 && p1nokoriscore[5] <= 158 || p1nokoriscore[5] === 160 ||
                         p1nokoriscore[5] === 161 || p1nokoriscore[6] === 164 || p1nokoriscore[5] === 167 ||
                         p1nokoriscore[5] === 170) {
-                        const uttr = new SpeechSynthesisUtterance("You require" + p1nokoriscore[5])
+                        const uttr = new SpeechSynthesisUtterance(p1Name.innerText + "You require" + p1nokoriscore[5])
                         uttr.lang = "en-GB"
                         speechSynthesis.speak(uttr)
                     }
+                }
+                if (P1R7.value == "") {
+                    document.getElementById('P1R7').focus()
+                }else {
+                    document.getElementById('P1R8').focus()
                 }
             }
             if (event.keyCode === 13 && P2R8.value != '' && p2score.length == 7) {
@@ -1973,7 +2144,7 @@
                     if (p1nokoriscore[7] >= 2 && p1nokoriscore[7] <= 158 || p1nokoriscore[7] === 160 ||
                         p1nokoriscore[7] === 161 || p1nokoriscore[7] === 164 || p1nokoriscore[7] === 167 ||
                         p1nokoriscore[7] === 170) {
-                        const uttr = new SpeechSynthesisUtterance("You require" + p1nokoriscore[7])
+                        const uttr = new SpeechSynthesisUtterance(p1Name.innerText + "You require" + p1nokoriscore[7])
                         uttr.lang = "en-GB"
                         speechSynthesis.speak(uttr)
                     }
@@ -1981,10 +2152,15 @@
                     if (p1nokoriscore[6] >= 2 && p1nokoriscore[6] <= 158 || p1nokoriscore[6] === 160 ||
                         p1nokoriscore[6] === 161 || p1nokoriscore[6] === 164 || p1nokoriscore[6] === 167 ||
                         p1nokoriscore[6] === 170) {
-                        const uttr = new SpeechSynthesisUtterance("You require" + p1nokoriscore[6])
+                        const uttr = new SpeechSynthesisUtterance(p1Name.innerText + "You require" + p1nokoriscore[6])
                         uttr.lang = "en-GB"
                         speechSynthesis.speak(uttr)
                     }
+                }
+                if (P1R8.value == "") {
+                    document.getElementById('P1R8').focus()
+                }else {
+                    document.getElementById('P1R9').focus()
                 }
             }
             if (event.keyCode === 13 && P2R9.value != '' && p2score.length == 8) {
@@ -2060,7 +2236,7 @@
                     if (p1nokoriscore[8] >= 2 && p1nokoriscore[8] <= 158 || p1nokoriscore[8] === 160 ||
                         p1nokoriscore[8] === 161 || p1nokoriscore[8] === 164 || p1nokoriscore[8] === 167 ||
                         p1nokoriscore[8] === 170) {
-                        const uttr = new SpeechSynthesisUtterance("You require" + p1nokoriscore[8])
+                        const uttr = new SpeechSynthesisUtterance(p1Name.innerText + "You require" + p1nokoriscore[8])
                         uttr.lang = "en-GB"
                         speechSynthesis.speak(uttr)
                     }
@@ -2068,10 +2244,15 @@
                     if (p1nokoriscore[7] >= 2 && p1nokoriscore[7] <= 158 || p1nokoriscore[7] === 160 ||
                         p1nokoriscore[7] === 161 || p1nokoriscore[7] === 164 || p1nokoriscore[7] === 167 ||
                         p1nokoriscore[7] === 170) {
-                        const uttr = new SpeechSynthesisUtterance("You require" + p1nokoriscore[7])
+                        const uttr = new SpeechSynthesisUtterance(p1Name.innerText + "You require" + p1nokoriscore[7])
                         uttr.lang = "en-GB"
                         speechSynthesis.speak(uttr)
                     }
+                }
+                if (P1R9.value == "") {
+                    document.getElementById('P1R9').focus()
+                }else {
+                    document.getElementById('P1R10').focus()
                 }
             }
             if (event.keyCode === 13 && P2R10.value != '' && p2score.length == 9) {
@@ -2146,7 +2327,7 @@
                     if (p1nokoriscore[9] >= 2 && p1nokoriscore[9] <= 158 || p1nokoriscore[9] === 160 ||
                         p1nokoriscore[9] === 161 || p1nokoriscore[9] === 164 || p1nokoriscore[9] === 167 ||
                         p1nokoriscore[9] === 170) {
-                        const uttr = new SpeechSynthesisUtterance("You require" + p1nokoriscore[9])
+                        const uttr = new SpeechSynthesisUtterance(p1Name.innerText + "You require" + p1nokoriscore[9])
                         uttr.lang = "en-GB"
                         speechSynthesis.speak(uttr)
                     }
@@ -2154,10 +2335,15 @@
                     if (p1nokoriscore[8] >= 2 && p1nokoriscore[8] <= 158 || p1nokoriscore[8] === 160 ||
                         p1nokoriscore[8] === 161 || p1nokoriscore[8] === 164 || p1nokoriscore[8] === 167 ||
                         p1nokoriscore[8] === 170) {
-                        const uttr = new SpeechSynthesisUtterance("You require" + p1nokoriscore[8])
+                        const uttr = new SpeechSynthesisUtterance(p1Name.innerText + "You require" + p1nokoriscore[8])
                         uttr.lang = "en-GB"
                         speechSynthesis.speak(uttr)
                     }
+                }
+                if (P1R10.value == "") {
+                    document.getElementById('P1R10').focus()
+                }else {
+                    document.getElementById('P1R11').focus()
                 }
             }
             if (event.keyCode === 13 && P2R11.value != '' && p2score.length == 10) {
@@ -2232,7 +2418,7 @@
                     if (p1nokoriscore[10] >= 2 && p1nokoriscore[10] <= 158 || p1nokoriscore[10] === 160 ||
                         p1nokoriscore[10] === 161 || p1nokoriscore[10] === 164 || p1nokoriscore[10] === 167 ||
                         p1nokoriscore[10] === 170) {
-                        const uttr = new SpeechSynthesisUtterance("You require" + p1nokoriscore[10])
+                        const uttr = new SpeechSynthesisUtterance(p1Name.innerText + "You require" + p1nokoriscore[10])
                         uttr.lang = "en-GB"
                         speechSynthesis.speak(uttr)
                     }
@@ -2240,10 +2426,15 @@
                     if (p1nokoriscore[9] >= 2 && p1nokoriscore[9] <= 158 || p1nokoriscore[9] === 160 ||
                         p1nokoriscore[9] === 161 || p1nokoriscore[9] === 164 || p1nokoriscore[9] === 167 ||
                         p1nokoriscore[9] === 170) {
-                        const uttr = new SpeechSynthesisUtterance("You require" + p1nokoriscore[9])
+                        const uttr = new SpeechSynthesisUtterance(p1Name.innerText + "You require" + p1nokoriscore[9])
                         uttr.lang = "en-GB"
                         speechSynthesis.speak(uttr)
                     }
+                }
+                if (P1R11.value == "") {
+                    document.getElementById('P1R11').focus()
+                }else {
+                    document.getElementById('P1R12').focus()
                 }
             }
             if (event.keyCode === 13 && P2R12.value != '' && p2score.length == 11) {
@@ -2318,7 +2509,7 @@
                     if (p1nokoriscore[11] >= 2 && p1nokoriscore[11] <= 158 || p1nokoriscore[11] === 160 ||
                         p1nokoriscore[11] === 161 || p1nokoriscore[11] === 164 || p1nokoriscore[11] === 167 ||
                         p1nokoriscore[11] === 170) {
-                        const uttr = new SpeechSynthesisUtterance("You require" + p1nokoriscore[11])
+                        const uttr = new SpeechSynthesisUtterance(p1Name.innerText + "You require" + p1nokoriscore[11])
                         uttr.lang = "en-GB"
                         speechSynthesis.speak(uttr)
                     }
@@ -2326,10 +2517,15 @@
                     if (p1nokoriscore[10] >= 2 && p1nokoriscore[10] <= 158 || p1nokoriscore[10] === 160 ||
                         p1nokoriscore[10] === 161 || p1nokoriscore[10] === 164 || p1nokoriscore[10] === 167 ||
                         p1nokoriscore[10] === 170) {
-                        const uttr = new SpeechSynthesisUtterance("You require" + p1nokoriscore[10])
+                        const uttr = new SpeechSynthesisUtterance(p1Name.innerText + "You require" + p1nokoriscore[10])
                         uttr.lang = "en-GB"
                         speechSynthesis.speak(uttr)
                     }
+                }
+                if (P1R12.value == "") {
+                    document.getElementById('P1R12').focus()
+                }else {
+                    document.getElementById('P1R13').focus()
                 }
             }
             if (event.keyCode === 13 && P2R13.value != '' && p2score.length == 12) {
@@ -2404,7 +2600,7 @@
                     if (p1nokoriscore[12] >= 2 && p1nokoriscore[12] <= 158 || p1nokoriscore[12] === 160 ||
                         p1nokoriscore[12] === 161 || p1nokoriscore[12] === 164 || p1nokoriscore[12] === 167 ||
                         p1nokoriscore[12] === 170) {
-                        const uttr = new SpeechSynthesisUtterance("You require" + p1nokoriscore[12])
+                        const uttr = new SpeechSynthesisUtterance(p1Name.innerText + "You require" + p1nokoriscore[12])
                         uttr.lang = "en-GB"
                         speechSynthesis.speak(uttr)
                     }
@@ -2412,10 +2608,15 @@
                     if (p1nokoriscore[11] >= 2 && p1nokoriscore[11] <= 158 || p1nokoriscore[11] === 160 ||
                         p1nokoriscore[11] === 161 || p1nokoriscore[11] === 164 || p1nokoriscore[11] === 167 ||
                         p1nokoriscore[11] === 170) {
-                        const uttr = new SpeechSynthesisUtterance("You require" + p1nokoriscore[11])
+                        const uttr = new SpeechSynthesisUtterance(p1Name.innerText + "You require" + p1nokoriscore[11])
                         uttr.lang = "en-GB"
                         speechSynthesis.speak(uttr)
                     }
+                }
+                if (P1R13.value == "") {
+                    document.getElementById('P1R13').focus()
+                }else {
+                    document.getElementById('P1R14').focus()
                 }
             }
             if (event.keyCode === 13 && P2R14.value != '' && p2score.length == 13) {
@@ -2490,7 +2691,7 @@
                     if (p1nokoriscore[13] >= 2 && p1nokoriscore[13] <= 158 || p1nokoriscore[13] === 160 ||
                         p1nokoriscore[13] === 161 || p1nokoriscore[13] === 164 || p1nokoriscore[13] === 167 ||
                         p1nokoriscore[13] === 170) {
-                        const uttr = new SpeechSynthesisUtterance("You require" + p1nokoriscore[13])
+                        const uttr = new SpeechSynthesisUtterance(p1Name.innerText + "You require" + p1nokoriscore[13])
                         uttr.lang = "en-GB"
                         speechSynthesis.speak(uttr)
                     }
@@ -2498,13 +2699,21 @@
                     if (p1nokoriscore[12] >= 2 && p1nokoriscore[12] <= 158 || p1nokoriscore[12] === 160 ||
                         p1nokoriscore[12] === 161 || p1nokoriscore[12] === 164 || p1nokoriscore[12] === 167 ||
                         p1nokoriscore[12] === 170) {
-                        const uttr = new SpeechSynthesisUtterance("You require" + p1nokoriscore[12])
+                        const uttr = new SpeechSynthesisUtterance(p1Name.innerText + "You require" + p1nokoriscore[12])
                         uttr.lang = "en-GB"
                         speechSynthesis.speak(uttr)
                     }
                 }
+                if (P1R14.value == "") {
+                    document.getElementById('P1R14').focus()
+                }else {
+                    document.getElementById('P1R15').focus()
+                }
             }
             if (event.keyCode === 13 && P2R15.value != '' && p2score.length == 14) {
+                if (P1R15.value == "") {
+                    document.getElementById('P1R15').focus()
+                }
                 if (P2R15.value <= 0) {
                     const uttr = new SpeechSynthesisUtterance("No Score")
                     uttr.lang = "en-GB"
@@ -2576,7 +2785,7 @@
                     if (p1nokoriscore[14] >= 2 && p1nokoriscore[14] <= 158 || p1nokoriscore[14] === 160 ||
                         p1nokoriscore[14] === 161 || p1nokoriscore[14] === 164 || p1nokoriscore[14] === 167 ||
                         p1nokoriscore[14] === 170) {
-                        const uttr = new SpeechSynthesisUtterance("You require" + p1nokoriscore[14])
+                        const uttr = new SpeechSynthesisUtterance(p1Name.innerText + "You require" + p1nokoriscore[14])
                         uttr.lang = "en-GB"
                         speechSynthesis.speak(uttr)
                     }
@@ -2584,7 +2793,7 @@
                     if (p1nokoriscore[13] >= 2 && p1nokoriscore[13] <= 158 || p1nokoriscore[13] === 160 ||
                         p1nokoriscore[13] === 161 || p1nokoriscore[13] === 164 || p1nokoriscore[13] === 167 ||
                         p1nokoriscore[13] === 170) {
-                        const uttr = new SpeechSynthesisUtterance("You require" + p1nokoriscore[13])
+                        const uttr = new SpeechSynthesisUtterance(p1Name.innerText + "You require" + p1nokoriscore[13])
                         uttr.lang = "en-GB"
                         speechSynthesis.speak(uttr)
                     }
